@@ -1,0 +1,169 @@
+/* Extra small devices (portrait phones, less than 576px)
+ No media query since this is the default in Bootstrap */
+
+ /* GENERAL STYLES */
+body,html{
+    height:100%;
+    font-family: 'Roboto';
+    background: #24252707;
+}
+
+h1{
+    font-weight: 100;
+    color: #333;
+}
+
+input{
+    color: #666;
+}
+
+.preferences_container{
+    display: none;
+}
+
+.movies_recommendation{
+    display: none;
+}
+
+.preferences{
+    background: #F7F7F7;
+    padding: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.preferences_title{
+    margin-bottom: 1.75rem;
+}
+
+.preferences_row{
+    margin-top: 1.22rem;
+}
+
+.preference{
+    background: inherit;
+}
+
+.preference_input{
+    width: 3rem;
+    border: 1px solid #ccc;
+    padding: 2px 2px 2px 5px;
+    border-radius: 3px;
+    box-shadow: inset 0 0 2px 2px #CCCCCC25;
+    margin-left: 1rem;
+}
+
+#slider_things .slider-selection {
+	background: rgba(255, 130, 130, 0.76);
+}
+#slider_things .slider-handle {
+    background: white;
+    border: 1px solid #999;
+}
+
+.recomend_btn_space{
+    margin-top: 1.35rem;
+}
+
+.run_recommendation{
+    cursor: pointer;
+    transition: all 0.55s;
+    padding: 0.3rem 0 0.4rem 0;
+    background: rgba(252, 98, 98, 0.877);
+    color: white;
+    margin-top: 1.3rem;
+    float: right;
+    text-align: center;
+    border-radius: 6px;
+    width: 85%;
+    margin-right: 7.5%;
+    height: 2rem;
+}
+
+.run_recommendation:hover{
+    background: rgb(253, 91, 91);
+}
+
+/* MODAL */
+/* CENTER MODALS */
+.modal {
+    text-align: center;
+    padding: 0!important;
+    font-size: 1.56rem;
+}
+
+.modal:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px; /* Adjusts for spacing */
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.modal-body{
+    text-align: center;
+}
+
+.movie_title{
+    margin-right: 1rem;
+    margin-top: 0.5rem;
+}
+
+.movie_rating{
+    padding-top: 3px;
+}
+
+.br-theme-fontawesome-stars-o{
+    float: left;
+    margin-right: 1.22rem;
+    margin-top: -0.4rem;
+}
+
+.return_main{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12rem;
+    color: #666;
+    cursor: pointer;
+    margin: 1rem 3rem;
+    transition: all 0.5s;
+    display: none;
+}
+
+.return_main:hover{
+    color: #333;
+}
+
+.movie_link{margin-top: -0.4rem;}
+.fa-film{color: #555;}
+a { color:#555; }
+a:hover { color:#555; }
+
+/* MEDIA QUERIES */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+}

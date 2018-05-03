@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Film Recommender</title>
+        <link rel="icon" type="image/png" href="img/film-icon.png" />
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-bar-rating/1.2.2/themes/fontawesome-stars-o.min.css" />
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- Material Design Bootstrap -->
+        <link href="css/mdb.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.2/css/bootstrap-slider.min.css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300" rel="stylesheet"> 
+        <!-- Your custom styles (optional) -->
+        <link href="css/style.css" rel="stylesheet">
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    </head>
+
+    <body>
+
+        <!-- Small modal -->
+        <!-- The modal -->
+        <div class="modal fade" id="loadModel_modal" tabindex="-1" role="dialog" aria-labelledby="modalLabelSmall" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                
+                    <!--
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modalLabelSmall">Small Shoes</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    -->
+
+                    <div class="modal-body" id="modalLoad_body">
+                        <!-- Here we will append text -->
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid h-100 preferences_container">
+            <div class="row h-100 justify-content-center align-items-center">
+                <div class="preferences col-sm-4">
+                    <h1 class="preferences_title">Preferencias</h1>
+                    <div class="row preferences_row">
+                        <div id="action" class="preference col-sm-6">
+                            Accion <br>
+                            <input id="slider_accion" class="slider_pref" type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-id="slider_things"/>
+                            <input class="preference_input" id="slider_accion_input" value="0" data-info="Action">
+                        </div>
+                        <div id="action" class="preference col-sm-6">
+                            Guerra <br>
+                            <input id="slider_guerra" class="slider_pref" type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-id="slider_things"/>
+                            <input class="preference_input" id="slider_guerra_input" value="0" data-info="War">
+                        </div>
+                    </div>
+                    <div class="row preferences_row">
+                        <div id="action" class="preference col-sm-6">
+                            Comedia <br>
+                            <input id="slider_comedia" class="slider_pref" type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-id="slider_things"/>
+                            <input class="preference_input" id="slider_comedia_input" value="0" data-info="Comedy">
+                        </div>
+                        <div id="action" class="preference col-sm-6">
+                            Drama <br>
+                            <input id="slider_drama" class="slider_pref" type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-id="slider_things"/>
+                            <input class="preference_input" id="slider_drama_input" value="0" data-info="Drama">
+                        </div>
+                    </div>
+                    <div class="row preferences_row">
+                        <div id="action" class="preference col-sm-6">
+                            Crimen <br>
+                            <input id="slider_crimen" class="slider_pref" type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-id="slider_things"/>
+                            <input class="preference_input" id="slider_crimen_input" value="0" data-info="Crime">
+                        </div>
+                        <div id="action" class="preference col-sm-6">
+                            Misterio <br>
+                            <input id="slider_misterio" class="slider_pref" type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-id="slider_things"/>
+                            <input class="preference_input" id="slider_misterio_input" value="0" data-info="Mystery">
+                        </div>
+                    </div>
+                    <div class="row preferences_row">
+                        <div id="action" class="preference col-sm-6">
+                            Aventuras <br>
+                            <input id="slider_aventuras" class="slider_pref" type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-id="slider_things"/>
+                            <input class="preference_input" id="slider_aventuras_input" value="0" data-info="Adventure">
+                        </div>
+                        <div id="action" class="preference col-sm-6">
+                            Fantansia <br>
+                            <input id="slider_fantasia" class="slider_pref" type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-id="slider_things"/>
+                            <input class="preference_input" id="slider_fantasia_input" value="0" data-info="Fantasy">
+                        </div>
+                    </div>
+                    <div class="row preferences_row">
+                        <div id="action" class="preference col-sm-6">
+                            Cine Negro <br>
+                            <input id="slider_cinenegro" class="slider_pref" type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-id="slider_things"/>
+                            <input class="preference_input" id="slider_cinenegro_input" value="0" data-info="Film-Noir">
+                        </div>
+                        <div id="action" class="preference col-sm-6">
+                            Horror <br>
+                            <input id="slider_horror" class="slider_pref" type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-id="slider_things"/>
+                            <input class="preference_input" id="slider_horror_input" value="0" data-info="Horror">
+                        </div>
+                    </div>
+                    <div class="row preferences_row">
+                        <div id="action" class="preference col-sm-6">
+                            Musical <br>
+                            <input id="slider_musical" class="slider_pref" type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-id="slider_things"/>
+                            <input class="preference_input" id="slider_musical_input" value="0" data-info="Musical">
+                        </div>
+                        <div id="action" class="preference col-sm-6">
+                            Infantil <br>
+                            <input id="slider_infantil" class="slider_pref" type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-id="slider_things"/>
+                            <input class="preference_input" id="slider_infantil_input" value="0" data-info="Children">
+                        </div>
+                    </div>
+                    <div class="row preferences_row">
+                        <div id="action" class="preference col-sm-6">
+                            Vaqueros <br>
+                            <input id="slider_vaqueros" class="slider_pref" type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-id="slider_things"/>
+                            <input class="preference_input" id="slider_vaqueros_input" value="0" data-info="Western">
+                        </div>
+                        <div id="action" class="preference col-sm-6">
+                            Suspense <br>
+                            <input id="slider_suspense" class="slider_pref" type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-id="slider_things"/>
+                            <input class="preference_input" id="slider_suspense_input" value="0" data-info="Thriller">
+                        </div>
+                    </div>
+                    <div class="row preferences_row">
+                        <div id="action" class="preference col-sm-6">
+                            Documental <br>
+                            <input id="slider_documental" class="slider_pref" type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-id="slider_things"/>
+                            <input class="preference_input" id="slider_documental_input" value="0" data-info="Documentary">
+                        </div>
+                        <div id="action" class="preference col-sm-6">
+                            Romantica <br>
+                            <input id="slider_romantica" class="slider_pref" type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-id="slider_things"/>
+                            <input class="preference_input" id="slider_romantica_input" value="0" data-info="Romance">
+                        </div>
+                    </div>
+                    <div class="row preferences_row">
+                        <div id="action" class="preference col-sm-6">
+                            Ciencia Ficción <br>
+                            <input id="slider_cienciaficcion" class="slider_pref" type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-id="slider_things"/>
+                            <input class="preference_input" id="slider_cienciaficcion_input" value="0" data-info="Sci-Fi">
+                        </div>
+                        <div id="action" class="preference col-sm-6">
+                            Animación <br>
+                            <input id="slider_animacion" class="slider_pref" type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-id="slider_things"/>
+                            <input class="preference_input" id="slider_animacion_input" value="0" data-info="Animation">
+                        </div>
+                    </div>
+
+                    <div class="row preferences_row recomend_btn_space">
+                        <div id="action" class="preference col-sm-6">
+                            Otros <br>
+                            <input id="slider_otros" class="slider_pref" type="text" data-slider-min="-100" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-id="slider_things"/>
+                            <input class="preference_input" id="slider_otros_input" value="0" data-info="(no genres listed)">
+                        </div>
+                        <div id="action" class="preference col-sm-6">
+                            <div class="run_recommendation waves-effect waves-light button button--trigger" onclick="demo.init()">Recomendar</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid h-100 movies_recommendation">
+            <div class="row h-100 justify-content-center align-items-center">
+                <div class="preferences col-sm-4">
+                    <h1 class="preferences_title">Usuarios similares</h1>
+                    <div class="row preferences_row movies_recommendation_father">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="return_main">
+            Volver
+        </div>
+
+        <!--/.Rotating card-->
+
+        <!-- SCRIPTS -->
+        <!-- JQuery -->
+        <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+        <!-- Bootstrap tooltips -->
+        <script type="text/javascript" src="js/popper.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript" src="js/mdb.min.js"></script>
+        <!-- SLIDER -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.2/bootstrap-slider.min.js"></script>
+        <!-- SCRIPTS -->
+        <!--http://antenna.io/demo/jquery-bar-rating/examples/-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-bar-rating/1.2.2/jquery.barrating.min.js"></script>
+        <script type="text/javascript" src="js/pearson-correlation.js"></script>
+        <script>
+            // Para los AJUSTES DEL LOADER
+            const SETTINGS = {
+                rebound: {
+                    tension: 16,
+                    friction: 5
+                },
+                spinner: {
+                    id: 'spinner',
+                    radius: 90,
+                    sides: 3,
+                    depth: 4,
+                    colors: {
+                        //background: '#231E76',
+                        //stroke: '#231E76',
+                        background: '#fafafa',
+                        stroke: '#f96868',
+                        base: null,
+                        child: '#f96868'
+                    },
+                    alwaysForward: true, // When false the spring will reverse normally.
+                    restAt: 0.5, // A number from 0.1 to 0.9 || null for full rotation
+                    renderBase: false
+                }
+            };
+		</script>
+        <script src="js/main_loader.js"></script>
+        <script src="js/movielens_const.js"></script>
+        <script src="js/movielens_utils.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
+    </body>
+</html>
