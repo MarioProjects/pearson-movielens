@@ -1,4 +1,4 @@
-# tfjs-colorize
-Image Colorize on web browser with Tensorflow JS
+# pearson-movielens
+Movie System Recomendation with collaborative strategy based on Pearson coefficient
 
-Demo: https://marioprojects.github.io/tfjs-colorize/
+Demo: https://marioprojects.github.io/pearson-movielens/
