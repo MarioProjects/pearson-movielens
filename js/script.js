@@ -180,7 +180,8 @@ function display_recomendations(titles, ratings, movies_ids){
 }
 
 var user_prefs;
-$.getJSON("user_prefs.json")
+var path = document.location.toString();
+$.getJSON(`${path}js/user_prefs.json`)
   .done(function( json ) {
     user_prefs = json;
     $("#modalLoad_body").html("Hecho! <i class='fa fa-smile-o' aria-hidden='true'></i>");
