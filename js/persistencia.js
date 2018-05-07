@@ -153,6 +153,6 @@ function recupera_usr_info(db_usr){
 
 
         $(".initial_login").fadeOut();
-        load_user_prefs_local();
+        load_user_prefs_github();
     });
 }
