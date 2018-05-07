@@ -1,9 +1,5 @@
 
 $( document ).ready(function() {
- 
-
-    $('#loadModel_modal').modal('show');
-    $("#modalLoad_body").html("Cargando preferencias de usuarios...");
 
     // With JQuery
     $("#slider_accion").slider();
@@ -103,7 +99,7 @@ $( document ).ready(function() {
 
     //Para que no haya ningun input seleccionado en el inicio
     $("input").blur();
-    $("input").val(0);
+    $(".slider_pref").val(0);
 
     $(".run_recommendation").click(function(){
         // Desde que le doy click se pone el loader automaticamente (main_loader.js)
@@ -179,19 +175,41 @@ function display_recomendations(titles, ratings, movies_ids){
     $(".return_main").show();
 }
 
+
 var user_prefs;
 var path = document.location.toString();
-$.getJSON(`${path}user_prefs.json`)
-  .done(function( json ) {
-    user_prefs = json;
-    $("#modalLoad_body").html("Hecho! <i class='fa fa-smile-o' aria-hidden='true'></i>");
-    setTimeout(function() {
-        $('#loadModel_modal').modal('hide');
-        $(".preferences_container").fadeIn(350);
-    }, 1250);
-  })
-  .fail(function( jqxhr, textStatus, error ) {
-    var err = textStatus + ", " + error;
-    alert(err);
-});
+function load_user_prefs_github(){
+    $('#loadModel_modal').modal('show');
+    $("#modalLoad_body").html("Cargando preferencias de usuarios...");
+    $.getJSON(`${path}user_prefs.json`)
+        .done(function( json ) {
+            user_prefs = json;
+            $("#modalLoad_body").html("Hecho! <i class='fa fa-smile-o' aria-hidden='true'></i>");
+            setTimeout(function() {
+                $('#loadModel_modal').modal('hide');
+                $(".preferences_container").fadeIn(350);
+            }, 1250);
+        })
+        .fail(function( jqxhr, textStatus, error ) {
+            var err = textStatus + ", " + error;
+            alert(err);
+        });      
+}
 
+function load_user_prefs_local(){
+    $('#loadModel_modal').modal('show');
+    $("#modalLoad_body").html("Cargando preferencias de usuarios...");
+    //$.getJSON(`${path}user_prefs.json`)
+     //   .done(function( json ) {
+     //       user_prefs = json;
+            $("#modalLoad_body").html("Hecho! <i class='fa fa-smile-o' aria-hidden='true'></i>");
+            setTimeout(function() {
+                $('#loadModel_modal').modal('hide');
+                $(".preferences_container").fadeIn(350);
+            }, 1250);
+      //  })
+       // .fail(function( jqxhr, textStatus, error ) {
+        //    var err = textStatus + ", " + error;
+         //   alert(err);
+       // });      
+}
