@@ -20,6 +20,12 @@
         <link href="css/style.css" rel="stylesheet">
         <link href="css/login_avatar.css" rel="stylesheet">
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <!-- Selector de personalidad -->
+        <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/selector_styles.css" />
+		<link rel="stylesheet" type="text/css" href="css/cs-select.css" />
+		<link rel="stylesheet" type="text/css" href="css/cs-skin-overlay.css" />
     </head>
 
     <body>
@@ -118,13 +124,13 @@
             
             <div class="inputGroup inputGroup1">
                 <label for="email1">Email</label>
-                <input type="text" id="email" class="email" maxlength="256"/>
+                <input type="text" id="email" class="email" maxlength="256" autocomplete="off" />
                 <p class="helper helper1">email@domain.com</p>
                 <span class="indicator"></span>
             </div>
             <div class="inputGroup inputGroup2">
                 <label for="password">Password</label>
-                <input type="password" id="password" class="password"/>
+                <input type="password" id="password" class="password" autocomplete="off" />
             </div>
             <div class="inputGroup inputGroup3">
                 <p class="waves-effect waves-light" id="login">Log in</p>
@@ -153,6 +159,26 @@
                     
                 </div>
             </div>
+        </div>
+
+        <div class="selector_personalidad">
+            <section>
+				<select class="cs-select cs-skin-overlay" onchange="personalidad_seleccionada()">
+					<option value="" disabled selected>Selecciona Personalidad</option>
+					<optgroup label="De la vieja escuela">
+						<option value="1">Piensas que el cine ya no es lo que era</option>
+						<option value="2">Chuck Norris conto hasta infinito – dos veces</option>
+						<option value="3">Crees que el VHS se volverá a poner de moda</option>
+						<option value="4">Eres 'rarito' - Te gustan las pelís en blanco y negro</option>
+					</optgroup>
+					<optgroup label="Para 'Millenials'">
+						<option value="5">Tienes más sagas de Pokémon que amigos</option>
+						<option value="6">Te gustaría estudiar en la escuela de High School Musical</option>
+						<option value="7">Has visto el Rey León 8912365 veces y la volverás a ver</option>
+						<option value="8">Crees que el diario de Noah es posible</option>
+					</optgroup>
+				</select>
+			</section>
         </div>
 
         <div class="container-fluid h-100 preferences_container">
@@ -302,18 +328,8 @@
         <!-- SCRIPTS -->
         <!-- JQuery -->
         <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-        <!-- Bootstrap tooltips -->
-        <script type="text/javascript" src="js/popper.min.js"></script>
-        <!-- Bootstrap core JavaScript -->
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
-        <!-- MDB core JavaScript -->
-        <script type="text/javascript" src="js/mdb.min.js"></script>
-        <!-- SLIDER -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.2/bootstrap-slider.min.js"></script>
-        <!-- SCRIPTS -->
-        <!--http://antenna.io/demo/jquery-bar-rating/examples/-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-bar-rating/1.2.2/jquery.barrating.min.js"></script>
-        <script type="text/javascript" src="js/pearson-correlation.js"></script>
+        <script src="js/classie.js"></script>
+		<script src="js/selectFx.js"></script>
         <script>
             // Para los AJUSTES DEL LOADER
             const SETTINGS = {
@@ -339,13 +355,38 @@
                     renderBase: false
                 }
             };
+            (function() {
+				[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {	
+					new SelectFx(el, {
+						stickyPlaceholder: false
+					});
+				} );
+			})();
         </script>
+        <!-- Bootstrap tooltips -->
+        <script type="text/javascript" src="js/popper.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript" src="js/mdb.min.js"></script>
+        <!-- SLIDER -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.2/bootstrap-slider.min.js"></script>
+        <!-- SCRIPTS -->
+        <!--http://antenna.io/demo/jquery-bar-rating/examples/-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-bar-rating/1.2.2/jquery.barrating.min.js"></script>
+        <script type="text/javascript" src="js/pearson-correlation.js"></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js'></script>
         <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
         <script src="js/persistencia.js"></script>
         <script src="js/login_avatar.js"></script>
         <script src="js/main_loader.js"></script>
+        
         <script src="js/movielens_const.js"></script>
+        <script src="js/movieid_to_imdb.js"></script>
+        <script src="js/movies_titles.js"></script>
+        <script src="js/user_prefs.js"></script>
+        <script src="js/user_ratings.js"></script>
+        
         <script src="js/movielens_utils.js"></script>
         <script type="text/javascript" src="js/script.js"></script>
     </body>

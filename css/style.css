@@ -5,7 +5,7 @@
 body,html{
     height:100%;
     font-family: 'Roboto';
-    background: #24252707;
+    background: #eff3f4;
 }
 
 h1{
@@ -19,6 +19,7 @@ input{
 
 .preferences_container{
     display: none;
+    z-index: 100;
 }
 
 .movies_recommendation{
