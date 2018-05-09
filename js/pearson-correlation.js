@@ -38,13 +38,19 @@ function pearsonCorrelationMatrix(matrix, user, num_neighbours){
     var user_indx = Array.apply(null, Array(num_neighbours)).map(Number.prototype.valueOf, -1);
     var cont_user = 0;
 
-    for (var i = 0, n=matrix.length; i < n; i++) {
+    for (var i = 0, n=Object.keys(matrix).length; i < n; i++) {
         var curr_pearson = pearsonCorrelation(matrix[i], user)
         if(curr_pearson > max_correlation[0]){
             max_correlation[0] = curr_pearson;
             user_indx[0] = i;
             // Ordenamos los array en funcion de los valores de correlacion
             // para que siempre quitemos la correlacion de menor valor
+            // -> https://stackoverflow.com/a/46622523/6724947
+            user_indx = user_indx
+                .map((item, index) => [max_correlation[index], item])
+                .sort(([count1], [count2]) => -count2 + count1)
+                .map(([, item]) => item); // extract the sorted items
+            max_correlation.sort(function(a, b){return a - b});
         }
     }
 

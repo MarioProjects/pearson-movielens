@@ -1,28 +1,47 @@
 
-function find_user_movies(users_ids, num_movies, num_neighbours){
+function find_user_movies(users_ids, num_movies){
     /*
     Dado una lista de identificadores de usuarios, devolvemos los ids
-    de las peliculas mejor puntuadas (rating > 4.0) de dichos usuarios hasta 
-    llegar a tener 'num_movies' y sin repetir peliculas
+    de las peliculas mejor puntuadas en promedio para todos esos usuarios,
+    teniendo en cuenta no repetir las peliculas
     */
     var movies_found = 0;
-    var res_movies = Array.apply(null, Array(num_movies)).map(Number.prototype.valueOf,0);
-    var res_ratings = Array.apply(null, Array(num_movies)).map(Number.prototype.valueOf,0);
+    var res_movies = new Array();
+    var res_ratings = new Array();
     var added = 0;
     
-    for(var i=0, n = users_ids.length; i < n; i=i++) {
-        var current_user_movies = BEST_RATINGS[users_ids[i]];
+    // Debo recorrer todos los ususarios
+    for(var i=0, n = users_ids.length; i < n; i++) {
+        var current_user_movies = USER_RATINGS[users_ids[i]];
+        // De los usuarios recorro todas sus peliculas
         for(var p=0, m = current_user_movies.length; p<m; p=p+2){
-            if(!is_in(res_movies, current_user_movies[p])){
-                res_movies[added] = current_user_movies[p];
-                res_ratings[added] = current_user_movies[p+1];
+            // Si en mi matriz de peliculas posibles para los resultados
+            // No esta la pelicula, la añado con el rating que el usuario 
+            // primero en ver dicha pelicula le ha puesto
+            var movie_pos_matrix = is_in(res_movies, current_user_movies[p])
+            if(movie_pos_matrix==-1){
+                res_movies.push(current_user_movies[p]);
+                res_ratings.push(current_user_movies[p+1]);
                 added++;
-                if(added==num_movies){ return [res_movies,res_ratings];}
+            }else{
+                // Si ya se encontraba en nuestra matriz calculamos el nuevo valor
+                // como un valor promediado del que estaba y el nuevo del usuario
+                res_ratings[movie_pos_matrix] = (res_ratings[movie_pos_matrix] + current_user_movies[p+1]) / 2;
             }
+
         }
     }
 
-    return [res_movies,res_ratings];
+    // Tengo todas las pelis y sus ratings y solo me falta ordenar res_ratings de mayor a menor
+    // y con la misma ordenación (indices) ordenar res_movies, tomando al final 'num_movies' necesarias
+    res_movies = res_movies
+        .map((item, index) => [res_ratings[index], item])
+        .sort(([count1], [count2]) => count2 - count1)
+        .map(([, item]) => item);
+    res_ratings.sort(function(a, b){return b-a});
+    
+    //Finalmente, con todo ordenado debo coger solo las primeras 'num_movies'
+    return [res_movies.slice(0, num_movies), res_ratings.slice(0, num_movies)];
 }
 
 function ids_to_titles(ids_movies){
@@ -42,14 +61,15 @@ function ids_to_titles(ids_movies){
 function is_in(x, element){
     /*
     Funcion auxiliar para saber si un 'elemento'
-    esta dentro de una lista 'x'
+    esta dentro de una lista 'x'. Si esta devuelve la posicion
+    del primer elemento, en caso de que no esté -1
     */
     for(var i=0, n = x.length; i < n; i++) {
         if(x[i]==element){
-            return true;
+            return i;
         }
     }
-    return false;
+    return -1;
 }
 
 function isOdd(num) { return num % 2;}

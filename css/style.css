@@ -144,6 +144,23 @@ input{
     color: #333;
 }
 
+.reload_preferences{
+    position: absolute;
+    right: 1.5rem;
+    top: 1rem;
+    font-size: 1.2rem;
+    color: #888;
+}
+
+.fa-refresh{
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.fa-refresh:hover{
+    color: #333;
+}
+
 .movie_link{margin-top: -0.4rem;}
 .fa-film{color: #555;}
 a { color:#555; }

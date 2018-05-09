@@ -1,16 +1,38 @@
 var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+var usr_firebase_mail = "";
+
 
 $('#login').click(function() {
     $email = $("#email").val();
     $pass = $("#password").val();
     if(!$email.match(re)) {
         //alert('invalid email');
+        $("#email").css("border-color","#E74C3A")
     }else{
         //alert('valid email');
-        login_usuario($email,$pass);
+        if($pass.length>0){
+            login_usuario($email,$pass);
+        }else{
+            $("#password").css("border-color","#E74C3A")
+        }
     }
 });
 
+$("#email").on('keyup', function (e) {
+    // Queremos quitar el borde rojo (posible) si ha escrito mal el email
+    $("#email").css("border-color","rgb(78, 184, 221)")
+    if (e.keyCode == 13) { // Cuando se presiona el enter
+        $('#login').click();
+    }
+});
+
+$("#password").on('keyup', function (e) {
+    // Queremos quitar el borde rojo (posible) si ha escrito mal el email
+    $("#password").css("border-color","rgb(78, 184, 221)")
+    if (e.keyCode == 13) { // Cuando se presiona el enter
+        $('#login').click();
+    }
+});
 
 // Initialize Firebase
 var config = {
@@ -57,7 +79,7 @@ function crea_usuario(email, password){
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
-            alert("No se ha podido crear el usuario!");
+            alert("Contraseña incorrecta!");
             // ...
         });
 }
@@ -90,6 +112,7 @@ function crea_usr_info(db_usr){
 }
 
 function recupera_usr_info(db_usr){
+    usr_firebase_mail = db_usr;
     var user_info = firebase.database().ref().child('/'+db_usr);
     user_info.once('value', function(datos) {
         datos_info = datos.val();
@@ -153,6 +176,11 @@ function recupera_usr_info(db_usr){
 
 
         $(".initial_login").fadeOut();
-        load_user_prefs_github();
+        load_body();
     });
+}
+
+function update_usr_info(genero, valor){
+    //usr_firebase_mail
+    firebase.database().ref().child('/'+usr_firebase_mail+'/'+genero).set(parseInt(valor));
 }
